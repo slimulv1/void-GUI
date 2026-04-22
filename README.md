@@ -35,7 +35,8 @@ Hãy thực hiện các bước sau để chuẩn bị "trận địa" cho hệ 
    ```
 3. Sao chép kho lưu trữ (Clone repository):
    ```bash
-   git clone https://github.com/slimulv1/void-GUI-install.git   ```
+   git clone https://github.com/slimulv1/void-GUI-install.git
+   ```
    > Lưu ý: Kho lưu trữ sẽ được tải về thư mục `~/void-GUI-install`.
 4. Di chuyển vào thư mục:
    ```bash
@@ -69,7 +70,7 @@ Script này sẽ thay đổi hoàn toàn diện mạo hệ thống của bạn n
 * ⛩️ Kết nối không gian: Tự động gắn (mount) các ổ đĩa bằng udisks2 & polkit, giúp bạn không còn phải bận tâm về việc chỉnh sửa phong ấn /etc/fstab.
 * 🎨 Tùy chỉnh ảo ảnh (Customizations):
   - Thay đổi hình nền cho Cinnamon và LightDM.
-  - Thiết lập kịch bản tự chạy (Autostart) cho Cinnamon:
+  - Thiết lập script tự chạy (Autostart) cho Cinnamon:
     - Kích hoạt octoxbps-updater (Luôn cập nhật linh lực cho hệ thống).
     - Thiết lập bố cục bàn phím tiếng Anh.
     - Tự động gắn tất cả các ổ đĩa hệ thống Linux, cực kỳ hữu ích cho thư viện Steam của bạn.
