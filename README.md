@@ -35,12 +35,12 @@ Hãy thực hiện các bước sau để chuẩn bị "trận địa" cho hệ 
    ```
 3. Sao chép kho lưu trữ (Clone repository):
    ```bash
-   git clone https://github.com/slimulv1/void-GUI-install.git
+   git clone https://github.com/slimulv1/void-GUI.git
    ```
    > Lưu ý: Kho lưu trữ sẽ được tải về thư mục `~/void-GUI`.
 4. Di chuyển vào thư mục:
    ```bash
-   cd void-GUI-install
+   cd void-GUI
    ```
 5. Cấp quyền thực thi cho Script:
    ```bash
