@@ -58,7 +58,7 @@ Script này sẽ thay đổi hoàn toàn diện mạo hệ thống của bạn n
 
 * 💠 Khởi tạo: Cài đặt Void Linux cùng môi trường desktop Cinnamon (cinnamon-all).
 * ⚡ Kích hoạt linh lực (Activates):
-  - Xlibre
+  - Xlibre (Là một nhánh phát triển (fork) của Xorg Xserver với rất nhiều cải tiến về chức năng và dọn dẹp mã nguồn.)
   - PipeWire (Âm thanh thuần khiết từ Cửu Tiêu)
   - Hỗ trợ máy in (Printer support)
   - Bluetooth
