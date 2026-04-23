@@ -58,14 +58,14 @@ Script này sẽ thay đổi hoàn toàn diện mạo hệ thống của bạn n
 
 * 💠 Khởi tạo: Cài đặt Void Linux cùng môi trường desktop Cinnamon (cinnamon-all).
 * ⚡ Kích hoạt linh lực (Activates):
-  - Xlibre (Là một nhánh phát triển (fork) của Xorg Xserver với rất nhiều cải tiến về chức năng và dọn dẹp mã nguồn.)
+  - XLibre (Là một nhánh phát triển (fork) của Xorg Xserver với rất nhiều cải tiến về chức năng và dọn dẹp mã nguồn)
   - PipeWire (Âm thanh thuần khiết từ Cửu Tiêu)
   - Hỗ trợ máy in (Printer support)
   - Bluetooth
   - Docker (Đóng gói sức mạnh linh hồn)
   - Trình quản lý gói Nix (Nix package manager)
   - Office (Công việc văn phòng)
-  - Profile Sync Daemon
+  - Profile Sync Daemon (PSD là một dịch vụ tạo liên kết mềm (symlink) và đồng bộ hóa các thư mục hồ sơ trình duyệt vào RAM, nhờ đó giảm thiểu các lần truy xuất ổ cứng (HDD/SSD) và tăng tốc độ trình duyệt. Điều này giúp Firefox và Chromium giảm mức chiếm dụng RAM)
   - Cấu hình tiết kiệm pin cho Notebook
 * ⛩️ Kết nối không gian: Tự động gắn (mount) các ổ đĩa bằng udisks2 & polkit, giúp bạn không còn phải bận tâm về việc chỉnh sửa phong ấn /etc/fstab.
 * 🎨 Tùy chỉnh ảo ảnh (Customizations):
