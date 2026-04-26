@@ -1,6 +1,7 @@
 <div align="center">
 	
 # 【 Void Linux Cinnamon Installation Script ![void](https://github.com/slimulv1/void-GUI/blob/main/void.png) 】
+
   <img src="https://img.shields.io/badge/Gensokyo-Approved-ff69b4?style=for-the-badge&logo=konami" alt="Gensokyo Approved">
   <img src="https://img.shields.io/badge/Spell_Card-High_Quality-blueviolet?style=for-the-badge" alt="Spell Card">
   
@@ -14,6 +15,7 @@ Possible values: [flat, flat-square, plastic, badge, for-the-badge, social] -->
 
 </div>
 
+<img src="/voidlinux.png " alt="WPrefs.app">
 ---
 
 ### 🌸 Script này giúp đơn giản hóa việc cài đặt Void Linux với môi trường desktop Cinnamon.
