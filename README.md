@@ -16,6 +16,7 @@ Possible values: [flat, flat-square, plastic, badge, for-the-badge, social] -->
 </div>
 
 <img src="/voidlinux.png " alt="WPrefs.app">
+
 ---
 
 ### 🌸 Script này giúp đơn giản hóa việc cài đặt Void Linux với môi trường desktop Cinnamon.
