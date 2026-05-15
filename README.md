@@ -19,7 +19,7 @@ Possible values: [flat, flat-square, plastic, badge, for-the-badge, social] -->
 
 ---
 
-### 🌸 Script này giúp đơn giản hóa việc cài đặt Void Linux với môi trường desktop Cinnamon.
+### 🌸 Script này giúp đơn giản hóa việc cài đặt Void Linux với môi trường desktop Cinnamon và Niri + Noctalia shell.
 
 ## 📜 Điều kiện cần thiết (Requirements)
 * Void Linux (glibc) đã được cài đặt bằng image cơ bản (base image).
