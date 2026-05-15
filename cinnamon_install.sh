@@ -256,13 +256,6 @@ sleep 1
 clear
 echo "Install Fonts..."
 sudo xbps-install -y noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra
-echo "Install microsoft fonts"
-git clone https://github.com/void-linux/void-packages
-cd void-packages
-./xbps-src binary-bootstrap
-echo "XBPS_ALLOW_RESTRICTED=yes" >> etc/conf
-./xbps-src pkg -f msttcorefonts
-xi msttcorefonts
 sleep 1
 
 #Software
