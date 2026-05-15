@@ -15,12 +15,12 @@ Possible values: [flat, flat-square, plastic, badge, for-the-badge, social] -->
 
 </div>
 
-<img src="/voidlinux.png " alt="WPrefs.app">
+<img src="/voidlinux.png " alt="">
 
 ---
 
-### 🌸 Script này giúp đơn giản hóa việc cài đặt Void Linux với môi trường desktop Cinnamon và Niri + ![Noctalia shell](https://docs.noctalia.dev/_astro/noctalia-logo.BwXc-yKG.svg).
-
+### 🌸 Script này giúp đơn giản hóa việc cài đặt Void Linux với môi trường desktop Cinnamon và Niri + Noctalia.
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Cinnamon-logo.svg/250px-Cinnamon-logo.svg.png"  height="150" /> <img src="https://docs.noctalia.dev/_astro/noctalia-logo.BwXc-yKG.svg"  height="150" /> <img src="https://niri-wm.github.io/niri/_assets/icons/logo.svg"  height="150" />
 ## 📜 Điều kiện cần thiết (Requirements)
 * Void Linux (glibc) đã được cài đặt bằng image cơ bản (base image).
 * Hệ thống Void Linux đã được khởi động thành công.
