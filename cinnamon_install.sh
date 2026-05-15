@@ -166,6 +166,16 @@ sudo xbps-install -Su xlibre
 sudo xbps-install -y octoxbps cinnamon-all xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils
 sleep 1
 
+#Niri &  Noctalia Shell
+clear
+echo "Install Niri/Noctalia Shell..."
+sudo xbps-install -S niri
+sudo xbps-remove quickshell
+echo "repository=https://universalrepository.pages.dev/void" \
+  | sudo tee /etc/xbps.d/10-noctalia.conf
+sudo xbps-install -S
+sudo xbps-install noctalia-shell
+
 #Docker
 echo "Install docker"
 sudo xbps-install -Su docker
