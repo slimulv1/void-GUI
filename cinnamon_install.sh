@@ -219,8 +219,68 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 sudo echo "" > /etc/sv/fcitx5-lotus/run
 cat <<EOF >> /etc/sv/fcitx5-lotus/run
+#!/bin/sh -e
+# Copyright (c) 2026 Contributors to the LotusInputMethod Project on GitHub
+# SPDX-License-Identifier: GPL-3.0-or-later
 
+setfacl -m u:uinput_proxy:rw /dev/uinput
+exec 2>&1
+
+exclude="run fcitx5-lotus supervise log conf"
+
+has_targets=0
+
+for user in *; do
+    [ -e "$user" ] || continue
+
+    is_excluded=0
+    for ex in $exclude; do
+        if [ "$user" = "$ex" ]; then
+            is_excluded=1
+            break
+        fi
+    done
+
+    [ "$is_excluded" -eq 1 ] && continue
+
+    if [ -f "$user" ]; then
+        (
+            has_targets=1
+            exec setpriv \
+                --reuid=uinput_proxy \
+                --regid=input \
+                --init-groups \
+                --bounding-set -all,+sys_nice,+sys_ptrace \
+                --inh-caps +sys_nice,+sys_ptrace \
+                --securebits +no_setuid_fixup,+no_setuid_fixup_locked \
+                --ambient-caps +sys_nice,+sys_ptrace \
+                /usr/bin/fcitx5-lotus-server -u "$user"
+        ) &
+    fi
+done
+
+if [ "$has_targets" -eq 0 ]; then
+    echo "No valid users found to start service."
+    sleep 30
+    exit 0
+fi
+
+wait
 EOF
+sudo chmod +x /etc/sv/fcitx5-lotus/run
+sudo ln -s /etc/sv/fcitx5-lotus /var/service/fcitx5-lotus.$(whoami)
+sudo sv start fcitx5-lotus.$(whoami)
+sudo sv start fcitx5-lotus.$(whoami)
+sudo modprobe uinput
+killall ibus-daemon || ibus exit
+echo 'if status is-login
+    set -Ux GTK_IM_MODULE fcitx
+    set -Ux QT_IM_MODULE fcitx
+    set -Ux XMODIFIERS @im=fcitx
+    set -Ux SDL_IM_MODULE fcitx
+    set -Ux GLFW_IM_MODULE ibus
+end' >> ~/.config/fish/config.fish
+
 
 #Software
 clear
