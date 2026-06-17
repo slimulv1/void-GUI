@@ -200,6 +200,28 @@ echo "Install Fonts..."
 sudo xbps-install -y noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra
 sleep 1
 
+#Fcitx5-Lotus
+clear
+echo "Install Fcitx5 Lotus"
+sudo xbps-install fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt
+mkdir -p ~/.config/autostart
+ln -s /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
+sudo xbps-install acl acl-progs cmake extra-cmake-modules libfcitx5-devel libinput-devel eudev-libudev-devel gcc go gettext-devel pkg-config hicolor-icon-theme libX11-devel python3-QtPy python3-PyQt5 python3-pyqt6 python3-pyqt6-gui python3-pyqt6-widgets
+git clone --recursive https://github.com/LotusInputMethod/fcitx5-lotus.git
+cd fcitx5-lotus
+mkdir build && cd build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib -DINSTALL_RUNIT=ON -DRUNIT_SV_DIR=/etc/sv ..
+make
+sudo make install
+sudo groupadd -f input
+sudo useradd -M -g input -s /usr/bin/nologin -d / uinput_proxy
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+sudo echo "" > /etc/sv/fcitx5-lotus/run
+cat <<EOF >> /etc/sv/fcitx5-lotus/run
+
+EOF
+
 #Software
 clear
 echo "Install Software..."
