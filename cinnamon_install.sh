@@ -73,8 +73,18 @@ sleep 1
 
 #Audio/bluetooth/Mixer
 clear
-echo "Install pipewire, wireplumber, pavucontrol, pulsemixer"
-sudo xbps-install -y pipewire wireplumber pavucontrol pulsemixer libspa-bluetooth blueman bluez-cups
+echo "Install pipewire, wireplumber, ,alsa-pipewire ,pipewire-pulse ,libspa-bluetooth ,pulseaudio-utils ,pavucontrol, pulsemixer"
+sudo xbps-install -y pipewire wireplumber pavucontrol alsa-pipewire pipewire-pulse libspa-bluetooth pulseaudio-utils pulsemixer libspa-bluetooth blueman bluez-cups
+sudo mkdir -p /etc/pipewire/pipewire.conf.d
+sudo ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
+sudo mkdir -p /etc/pipewire/pipewire.conf.d
+sudo ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
+sudo mkdir -p /etc/alsa/conf.d
+sudo ln -sf /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d/
+sudo ln -sf /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
+mkdir -p ~/.config/autostart
+ln -sf /usr/share/applications/pipewire.desktop ~/.config/autostart/
+
 sleep 1
 
 #Cron configuration
@@ -206,6 +216,7 @@ gsettings set org.cinnamon.theme name Arc-Dark
 gsettings set org.cinnamon.desktop.input-sources sources "[('xkb', 'us')]"
 gsettings set org.gnome.desktop.interface monospace-font-name 'Monospace 11'
 gsettings set org.cinnamon.desktop.background picture-uri 'file:///usr/share/backgrounds/cinnamon_background.jpg'
+
 
 
 # Delete the autostart entry after the first execution.
