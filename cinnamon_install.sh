@@ -77,21 +77,6 @@ echo "Install pipewire, wireplumber, pavucontrol, pulsemixer"
 sudo xbps-install -y pipewire wireplumber pavucontrol pulsemixer libspa-bluetooth blueman bluez-cups
 sleep 1
 
-#Printing support configuration 
-echo "Install Cups"
-sudo xbps-install cups cups-pk-helper cups-filters foomatic-db foomatic-db-engine
-echo "Enable CUPS service: "
-sudo ln -sv /etc/sv/cupsd /var/service
-echo "Install Epson Printer"
-sudo xbps-install -Rs epson-inkjet-printer-escpr imagescan iscan-data
-echo "Install HP Printer"
-sudo xbps-install -Rs hplip-gui
-echo "Install Cannon Printer"
-sudo xbps-install -Rs cnijfilter2
-echo "Install Brother Printer"
-sudo xbps-install -Rs brother-brlaser
-sleep 1
-
 #Cron configuration
 echo "Install cronie"
 sudo xbps-install -y cronie
@@ -133,11 +118,6 @@ sudo chmod +x etc/sv/psd/*
 cd ..
 sleep 1
 
-#Lazygit
-echo "Simple terminal UI for git command"
-sudo xbps-install -Su lazygit
-sleep 1
-
 #Neovim + AstroNvim
 echo "Install Neovim"
 sudo xbps-install -Su neovim
@@ -176,45 +156,6 @@ echo "repository=https://universalrepository.pages.dev/void" \
 sudo xbps-install -S
 sudo xbps-install noctalia-shell
 
-#Docker
-echo "Install docker"
-sudo xbps-install -Su docker
-echo "Enable required services"
-sudo ln -s /etc/sv/containerd /var/service
-sudo ln -s /etc/sv/docker /var/service
-echo "Add user to group"
-sudo groupadd docker
-sudo usermod -aG docker ${USER}
-echo "Set respective permissions"
-sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
-sudo chmod g+rwx "$HOME/.docker" -R
-sleep 1
-
-#Nix package manager 
-clear
-echo "Install Nix"
-sudo xbps-install -Sy nix
-echo "Activate Nix Daemon"
-sudo ln -s /etc/sv/nix-daemon /var/service/
-source /etc/profile
-echo "Add channels"
-echo "Unstable" 
-nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
-echo "NixOS 25.11"
-nix-channel --add https://nixos.org/channels/nixos-25.11 nixpkgs
-echo "Update channels" 
-nix-channel --update
-echo "List channels"
-nix-channel --list 
-echo "To see installed applications in the launcher create a symlink to Nix applications directory"
-sudo ln -s "$HOME/.nix-profile/share/applications" "$HOME/.local/share/applications/nix-env"
-sleep 1
-
-#Dconf Editor 
-echo "Applications internal settings viewer and editor"
-sudo xbps-install dconf-editor
-sleep 1
-
 #Syncthing 
 echo "Install Syncthing"
 sudo xbps-install -Rs syncthing 
@@ -226,26 +167,7 @@ sleep 1
 echo "Install Intel's Microcode"
 sudo xbps-install -Rs intel-ucode 
 echo "Reconfigure your kernel, according your kernel name"
-sudo xbps-reconfigure -f linux6.12
-sleep 1
-
-#
-
-#Printersupport
-clear
-echo "Install Cups"
-sudo xbps-install cups cups-pk-helper cups-filters foomatic-db foomatic-db-engine gutenprint system-config-printer
-sudo xbps-install -y gnome-system-tools users-admin
-echo "Enable CUPS service: "
-sudo ln -sv /etc/sv/cupsd /var/service
-echo "Install Epson Printer"
-sudo xbps-install -Rs epson-inkjet-printer-escpr imagescan iscan-data
-echo "Install HP Printer"
-sudo xbps-install -Rs hplip-gui
-echo "Install Cannon Printer"
-sudo xbps-install -Rs cnijfilter2
-echo "Install Brother Printer"
-sudo xbps-install -Rs brother-brlaser
+sudo xbps-reconfigure -f linux6.18
 sleep 1
 
 #Filesystem
