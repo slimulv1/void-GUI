@@ -200,64 +200,6 @@ echo "Install Fonts..."
 sudo xbps-install -y noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra
 sleep 1
 
-#Fcitx5-Lotus
-clear
-echo "Install Fcitx5 Lotus"
-sudo xbps-install fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt
-mkdir -p ~/.config/autostart
-ln -s /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
-sudo xbps-install acl acl-progs cmake extra-cmake-modules libfcitx5-devel libinput-devel eudev-libudev-devel gcc go gettext-devel pkg-config hicolor-icon-theme libX11-devel python3-QtPy python3-PyQt5 python3-pyqt6 python3-pyqt6-gui python3-pyqt6-widgets
-git clone --recursive https://github.com/LotusInputMethod/fcitx5-lotus.git
-cd fcitx5-lotus
-mkdir build && cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib -DINSTALL_RUNIT=ON -DRUNIT_SV_DIR=/etc/sv ..
-make
-sudo make install
-sudo groupadd -f input
-sudo useradd -M -g input -s /usr/bin/nologin -d / uinput_proxy
-sudo udevadm control --reload-rules
-sudo udevadm trigger
-sudo echo "" > /etc/sv/fcitx5-lotus/run
-cat <<EOF >> /etc/sv/fcitx5-lotus/run
-#!/bin/sh -e
-# Copyright (c) 2026 Contributors to the LotusInputMethod project
-# SPDX-License-Identifier: GPL-3.0-or-later
-
-exec 2>&1
-setfacl -m u:uinput_proxy:rw /dev/uinput
-exclude="run supervise log conf"
-while true; do
-    for user in *; do
-        case " $exclude " in *" $user "*) continue ;; esac
-        [ ! -f "$user" ] && continue
-        if ! pgrep -f "/usr/bin/fcitx5-lotus-server -u $user" > /dev/null; then
-            echo "Starting server for: $user"
-            (
-                exec setpriv --reuid=uinput_proxy --regid=input --init-groups \
-                    --bounding-set -all,+sys_nice,+sys_ptrace \
-                    --inh-caps +sys_nice,+sys_ptrace \
-                    --ambient-caps +sys_nice,+sys_ptrace \
-                    /usr/bin/fcitx5-lotus-server -u "$user"
-            ) &
-        fi
-    done
-    sleep 10
-done
-EOF
-sudo chmod +x /etc/sv/fcitx5-lotus/run
-sudo ln -s /etc/sv/fcitx5-lotus /var/service/fcitx5-lotus.$(whoami)
-sudo sv start fcitx5-lotus.$(whoami)
-sudo modprobe uinput
-killall ibus-daemon || ibus exit
-echo 'if status is-login
-    set -Ux GTK_IM_MODULE fcitx
-    set -Ux QT_IM_MODULE fcitx
-    set -Ux XMODIFIERS @im=fcitx
-    set -Ux SDL_IM_MODULE fcitx
-    set -Ux GLFW_IM_MODULE ibus
-end' >> ~/.config/fish/config.fish
-
-
 #Software
 clear
 echo "Install Software..."
